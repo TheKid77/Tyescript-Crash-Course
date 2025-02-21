@@ -10,19 +10,7 @@ const library = [
 ];
 
 const loanQueue = [];
-var nextLoanId = 1;
-
-console.log(library);
-addNewBook({
-  title: "Brave New World",
-  author: "Aldous Huxley",
-  availableCopies: 3,
-});
-borrowBook("1984");
-borrowBook("Brave New World");
-borrowBook("1984");
-returnBook(3);
-console.log(library);
+const nextLoanId = 1;
 
 function addNewBook(bookObj) {
   library.push(bookObj);
@@ -49,3 +37,16 @@ function returnBook(loanId) {
   loan.book.availableCopies++;
   return loan;
 }
+
+console.log(library);
+
+addNewBook({
+  title: "Brave New World",
+  author: "Aldous Huxley",
+  availableCopies: 3,
+});
+borrowBook("1984");
+borrowBook("Brave New World");
+borrowBook("1984");
+returnBook(3);
+console.log(library);
