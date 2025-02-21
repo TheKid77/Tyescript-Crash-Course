@@ -19,6 +19,11 @@ function addNewBook(bookObj) {
 function borrowBook(title) {
   const selectedBook = library.find((bookObj) => bookObj.title === title);
 
+  if (!selectedBook) {
+    console.error(`${title} does not exist in library`);
+    return;
+  }
+
   if (selectedBook.availableCopies <= 0) {
     console.error(`${title} has no available copies`);
     return;
@@ -48,5 +53,6 @@ addNewBook({
 borrowBook("1984");
 borrowBook("Brave New World");
 borrowBook("1984");
+borrowBook("xx1984");
 returnBook(3);
 console.log(library);
