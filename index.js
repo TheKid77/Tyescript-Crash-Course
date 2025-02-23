@@ -21,8 +21,10 @@ const library = [
 ];
 const loanQueue = [];
 let nextLoanId = 1;
+let nextBookId = 5;
 function addNewBook(bookObj) {
-    library.push(bookObj);
+    const newBook = Object.assign({ id: nextBookId++ }, bookObj);
+    library.push(newBook);
 }
 function borrowBook(title) {
     const selectedBook = library.find((bookObj) => bookObj.title === title);
@@ -64,7 +66,6 @@ function getBookDetail(identifier) {
 }
 console.log(library);
 addNewBook({
-    id: 5,
     title: "Brave New World",
     author: "Aldous Huxley",
     availableCopies: 3,

@@ -37,9 +37,12 @@ const loanQueue: Loan[] = [];
 let nextLoanId = 1;
 let nextBookId = 5;
 
-function addNewBook(bookObj: Book): void {
-  bookObj.id = nextBookId++;
-  library.push(bookObj);
+function addNewBook(bookObj: Omit<Book, "id">): void {
+  const newBook = {
+    id: nextBookId++,
+    ...bookObj,
+  };
+  library.push(newBook);
 }
 
 function borrowBook(title: string): Loan | undefined {
