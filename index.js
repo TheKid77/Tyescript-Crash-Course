@@ -54,6 +54,14 @@ function returnBook(loanId) {
     loan.book.availableCopies++;
     return loan;
 }
+function getBookDetail(identifier) {
+    if (typeof identifier === "string") {
+        return library.find((book) => book.title.toLowerCase() === identifier.toLowerCase());
+    }
+    else {
+        return library.find((book) => book.id === identifier);
+    }
+}
 console.log(library);
 addNewBook({
     id: 5,
@@ -67,3 +75,4 @@ borrowBook("1984");
 returnBook(3);
 console.log(library);
 console.log(loanQueue);
+console.log(getBookDetail(1));
