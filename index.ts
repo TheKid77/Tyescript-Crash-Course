@@ -1,4 +1,5 @@
 type Book = {
+  id: number;
   title: string;
   author: string;
   availableCopies: number;
@@ -11,10 +12,21 @@ type Loan = {
 };
 
 const library: Book[] = [
-  { title: "To Kill a MockingBird", author: "Harper Lee", availableCopies: 3 },
-  { title: "1984", author: "George Orwell", availableCopies: 2 },
-  { title: "Pride and Prejudice", author: "Jane Austen", availableCopies: 4 },
   {
+    id: 1,
+    title: "To Kill a MockingBird",
+    author: "Harper Lee",
+    availableCopies: 3,
+  },
+  { id: 2, title: "1984", author: "George Orwell", availableCopies: 2 },
+  {
+    id: 3,
+    title: "Pride and Prejudice",
+    author: "Jane Austen",
+    availableCopies: 4,
+  },
+  {
+    id: 4,
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
     availableCopies: 2,
@@ -67,6 +79,7 @@ function returnBook(loanId: number) {
 console.log(library);
 
 addNewBook({
+  id: 5,
   title: "Brave New World",
   author: "Aldous Huxley",
   availableCopies: 3,
