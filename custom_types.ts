@@ -62,6 +62,8 @@ const vehicles: Vehicle[] = [
   },
 ];
 
+let nextVehicle = 6;
+
 function displayVehicleInfo(vehicle: Vehicle) {
   console.log(
     `${vehicle.model} is from ${vehicle.year} has a ${vehicle.engine?.type} engine.`
@@ -76,9 +78,27 @@ function updateVehicleInfo(id: number, updates: Partial<Vehicle>): void {
   }
   Object.assign(foundVehicle, updates);
 }
+
+function addNewVehicle(newVeh: Omit<Vehicle, "id">): Vehicle {
+  const vehicle: Vehicle = {
+    id: nextVehicle++,
+    ...newVeh,
+  };
+  vehicles.push(vehicle);
+  return vehicle;
+}
+
+console.log(`orig:`, vehicles);
+
 updateVehicleInfo(3, { model: "Honda Accord" });
 updateVehicleInfo(4, { year: 2022 });
 
 displayVehicleInfo(vehicle1);
 displayVehicleInfo(vehicle2);
-console.log(vehicles);
+addNewVehicle({
+  model: "Toyota Camry",
+  year: 2020,
+  isElectric: false,
+  vehicleType: "car",
+});
+console.log(`new:`, vehicles);

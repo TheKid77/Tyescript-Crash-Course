@@ -41,6 +41,7 @@ const vehicles = [
         vehicleType: "truck",
     },
 ];
+let nextVehicle = 6;
 function displayVehicleInfo(vehicle) {
     var _a;
     console.log(`${vehicle.model} is from ${vehicle.year} has a ${(_a = vehicle.engine) === null || _a === void 0 ? void 0 : _a.type} engine.`);
@@ -53,8 +54,20 @@ function updateVehicleInfo(id, updates) {
     }
     Object.assign(foundVehicle, updates);
 }
+function addNewVehicle(newVeh) {
+    const vehicle = Object.assign({ id: nextVehicle++ }, newVeh);
+    vehicles.push(vehicle);
+    return vehicle;
+}
+console.log(`orig:`, vehicles);
 updateVehicleInfo(3, { model: "Honda Accord" });
 updateVehicleInfo(4, { year: 2022 });
 displayVehicleInfo(vehicle1);
 displayVehicleInfo(vehicle2);
-console.log(vehicles);
+addNewVehicle({
+    model: "Toyota Camry",
+    year: 2020,
+    isElectric: false,
+    vehicleType: "car",
+});
+console.log(`new:`, vehicles);
