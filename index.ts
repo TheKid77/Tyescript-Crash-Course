@@ -36,11 +36,11 @@ const library: Book[] = [
 const loanQueue: Loan[] = [];
 let nextLoanId = 1;
 
-function addNewBook(bookObj: Book) {
+function addNewBook(bookObj: Book): void {
   library.push(bookObj);
 }
 
-function borrowBook(title: string) {
+function borrowBook(title: string): Loan | undefined {
   const selectedBook = library.find((bookObj) => bookObj.title === title);
 
   if (!selectedBook) {
@@ -64,7 +64,7 @@ function borrowBook(title: string) {
   return newLoan;
 }
 
-function returnBook(loanId: number) {
+function returnBook(loanId: number): Loan {
   const loan = loanQueue.find((loan) => loan.id == loanId);
 
   if (!loan) {
@@ -76,7 +76,7 @@ function returnBook(loanId: number) {
   return loan;
 }
 
-function getBookDetail(identifier: string | number) {
+function getBookDetail(identifier: string | number): Book | undefined {
   if (typeof identifier === "string") {
     return library.find(
       (book) => book.title.toLowerCase() === identifier.toLowerCase()
