@@ -1,4 +1,16 @@
-const library = [
+type Book = {
+  title: string;
+  author: string;
+  availableCopies: number;
+};
+
+type Loan = {
+  id: number;
+  book: Book;
+  status: "borrowed" | "returned";
+};
+
+const library: Book[] = [
   { title: "To Kill a MockingBird", author: "Harper Lee", availableCopies: 3 },
   { title: "1984", author: "George Orwell", availableCopies: 2 },
   { title: "Pride and Prejudice", author: "Jane Austen", availableCopies: 4 },
@@ -9,14 +21,14 @@ const library = [
   },
 ];
 
-const loanQueue = [];
-const nextLoanId = 1;
+const loanQueue: Loan[] = [];
+let nextLoanId = 1;
 
-function addNewBook(bookObj) {
+function addNewBook(bookObj: Book) {
   library.push(bookObj);
 }
 
-function borrowBook(title) {
+function borrowBook(title: string) {
   const selectedBook = library.find((bookObj) => bookObj.title === title);
 
   if (!selectedBook) {
@@ -30,14 +42,23 @@ function borrowBook(title) {
   }
   selectedBook.availableCopies--;
 
-  const newLoan = { id: nextLoanId++, book: selectedBook, status: "borrowed" };
+  const newLoan: Loan = {
+    id: nextLoanId++,
+    book: selectedBook,
+    status: "borrowed",
+  };
   loanQueue.push(newLoan);
   console.log(loanQueue);
   return newLoan;
 }
 
-function returnBook(loanId) {
+function returnBook(loanId: number) {
   const loan = loanQueue.find((loan) => loan.id == loanId);
+
+  if (!loan) {
+    console.error(`${loanId} was not found in the loan queue`);
+    throw new Error();
+  }
   loan.status = "returned";
   loan.book.availableCopies++;
   return loan;
@@ -53,6 +74,6 @@ addNewBook({
 borrowBook("1984");
 borrowBook("Brave New World");
 borrowBook("1984");
-borrowBook("xx1984");
 returnBook(3);
 console.log(library);
+console.log(loanQueue);
