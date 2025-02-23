@@ -35,8 +35,10 @@ const library: Book[] = [
 
 const loanQueue: Loan[] = [];
 let nextLoanId = 1;
+let nextBookId = 5;
 
 function addNewBook(bookObj: Book): void {
+  bookObj.id = nextBookId++;
   library.push(bookObj);
 }
 
@@ -89,7 +91,6 @@ function getBookDetail(identifier: string | number): Book | undefined {
 console.log(library);
 
 addNewBook({
-  id: 5,
   title: "Brave New World",
   author: "Aldous Huxley",
   availableCopies: 3,
