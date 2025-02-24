@@ -86,7 +86,33 @@ console.log("All Loans...");
 loanQueue.forEach((element) => {
     console.log(element.book, element.status);
 });
+// forEach Loop Style
 console.log("All Books...");
 library.forEach((element) => {
     console.log(element.id, element.author, element.title);
 });
+// for Loop Style
+for (let i = 1; i <= 5; i++)
+    console.log(i);
+// while Loop Style
+let i = 1;
+while (i <= 5) {
+    console.log(i);
+    i++;
+}
+// while Loop Style
+let j = 1;
+do {
+    console.log(j);
+    j++;
+} while (j <= 5);
+// for...in Loop Style
+const person = { name: "John", age: 30 };
+for (const key in person) {
+    console.log(key, person[key]);
+}
+// for...of Loop Style
+const numbers = [1, 2, 3, 4, 5];
+for (const num of numbers) {
+    console.log(num);
+}
