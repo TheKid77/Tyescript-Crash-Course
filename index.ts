@@ -33,6 +33,10 @@ const library: Book[] = [
   },
 ];
 
+interface Item {
+  id: number;
+}
+
 const loanQueue: Loan[] = [];
 let nextLoanId = 1;
 let nextBookId = 5;
@@ -91,6 +95,10 @@ function getBookDetail(identifier: string | number): Book | undefined {
   }
 }
 
+function getDetail<T extends Item>(array: T[], id: number) {
+  return array.find((item) => item.id === id);
+}
+
 console.log(library);
 
 addNewBook({
@@ -105,3 +113,16 @@ returnBook(3);
 console.log(library);
 console.log(loanQueue);
 console.log(getBookDetail(1));
+
+console.log(getDetail<Book>(library, 1));
+console.log(getDetail<Loan>(loanQueue, 1));
+
+console.log("All Loans...");
+loanQueue.forEach((element) => {
+  console.log(element.book, element.status);
+});
+
+console.log("All Books...");
+library.forEach((element) => {
+  console.log(element.id, element.author, element.title);
+});

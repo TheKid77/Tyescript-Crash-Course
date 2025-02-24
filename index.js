@@ -64,6 +64,9 @@ function getBookDetail(identifier) {
         return library.find((book) => book.id === identifier);
     }
 }
+function getDetail(array, id) {
+    return array.find((item) => item.id === id);
+}
 console.log(library);
 addNewBook({
     title: "Brave New World",
@@ -77,3 +80,13 @@ returnBook(3);
 console.log(library);
 console.log(loanQueue);
 console.log(getBookDetail(1));
+console.log(getDetail(library, 1));
+console.log(getDetail(loanQueue, 1));
+console.log("All Loans...");
+loanQueue.forEach((element) => {
+    console.log(element.book, element.status);
+});
+console.log("All Books...");
+library.forEach((element) => {
+    console.log(element.id, element.author, element.title);
+});
